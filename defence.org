@@ -1,0 +1,42 @@
+#+TITLE: Regularizace v neuronových sítích
+#+AUTHOR: Jakub Zárybnický
+#+DATE: 18. 12. 2019
+#+LANGUAGE:  cs
+#+OPTIONS:   num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \mode<beamer>{\usetheme{Madrid}}
+#+BEAMER_FRAME_LEVEL: 1
+#+BIND: org-export-use-babel nil
+
+* Zadání
+- demonstrovat regularizaci při učení neuronových sítí
+- regularizace
+  -  = omezení velikosti jednotlivých váhových koeficientů
+  - jeden ze způsobů zamezování problému přeučení (overfitting) při učení NN s učitelem
+  - L1 (lasso regression) - zmenšuje váhové vektory o konstantu v každém kroku
+  - L2 (ridge regression) - zmenšuje váhové vektory proporčně k jejich velikosti
+
+* Přístup
+- záměr = vytvořit NN od základů pomocí násobení matic v Numpy
+  - (stejně jako v projektech ZZN a SUI)
+- v Javě:
+  - knihovna Nd4j (nd-array, deeplearning4java)
+  - nejbližší k Numpy v Pythonu
+
+* Výsledek
+- implementace libovolně tvarovaných NN s L1/L2/L1+L2 regularizací
+- jednoduchý program pro učení NN s regularizací
+- konfigurace změnami v kódu
+- vizualizace v terminálu nebo ručním exportováním dat
+
+* Chyby při implementaci:
+- chyba v definici /cost function/
+- pomalé - iterace přes vzorky
+- důvěra v /data science/ ekosystém Javy
+  - Nd4j - jednoúčelová knihovna (2D a 3D pole, 1D téměř nepodporované)
+  - žádný jednoduchý způsob vizualizace (~ matplotlib)
+- téměř nulový přenos zkušeností z velmi podobných projektů v ZZN a SUI

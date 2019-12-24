@@ -1,0 +1,82 @@
+% Created 2019-12-18 Wed 13:53
+% Intended LaTeX compiler: pdflatex
+\documentclass[presentation]{beamer}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\mode<beamer>{\usetheme{Madrid}}
+\usetheme{default}
+\author{Jakub Zárybnický}
+\date{18. 12. 2019}
+\title{Regularizace v neuronových sítích}
+\hypersetup{
+ pdfauthor={Jakub Zárybnický},
+ pdftitle={Regularizace v neuronových sítích},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.1 (Org mode 9.1.9)}, 
+ pdflang={Czech}}
+\begin{document}
+
+\maketitle
+
+\begin{frame}[label={sec:orgbbc10c9}]{Zadání}
+\begin{itemize}
+\item demonstrovat regularizaci při učení neuronových sítí
+\item regularizace
+\begin{itemize}
+\item = omezení velikosti jednotlivých váhových koeficientů
+\item jeden ze způsobů zamezování problému přeučení (overfitting) při učení NN s učitelem
+\item L1 (lasso regression) - zmenšuje váhové vektory o konstantu v každém kroku
+\item L2 (ridge regression) - zmenšuje váhové vektory proporčně k jejich velikosti
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:orgf510ca8}]{Přístup}
+\begin{itemize}
+\item záměr = vytvořit NN od základů pomocí násobení matic v Numpy
+\begin{itemize}
+\item (stejně jako v projektech ZZN a SUI)
+\end{itemize}
+\item v Javě:
+\begin{itemize}
+\item knihovna Nd4j (nd-array, deeplearning4java)
+\item nejbližší k Numpy v Pythonu
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:org77b6584}]{Výsledek}
+\begin{itemize}
+\item implementace libovolně tvarovaných NN s L1/L2/L1+L2 regularizací
+\item jednoduchý program pro učení NN s regularizací
+\item konfigurace změnami v kódu
+\item vizualizace v terminálu nebo ručním exportováním dat
+\end{itemize}
+\end{frame}
+
+\begin{frame}[label={sec:orge94cc45}]{Chyby při implementaci:}
+\begin{itemize}
+\item chyba v definici \emph{cost function}
+\item pomalé - iterace přes vzorky
+\item důvěra v \emph{data science} ekosystém Javy
+\begin{itemize}
+\item Nd4j - jednoúčelová knihovna (2D a 3D pole, 1D téměř nepodporované)
+\item žádný jednoduchý způsob vizualizace (\textasciitilde{} matplotlib)
+\end{itemize}
+\item téměř nulový přenos zkušeností z velmi podobných projektů v ZZN a SUI
+\end{itemize}
+\end{frame}
+\end{document}

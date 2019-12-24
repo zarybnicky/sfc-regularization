@@ -57,6 +57,9 @@ public class App
         netL1Reg.l1 = true;
         Network netL2Reg = netNoReg.clone();
         netL2Reg.l2 = true;
+        Network netL12Reg = netNoReg.clone();
+        netL12Reg.l1 = true;
+        netL12Reg.l2 = true;
 
         // Split data into training and test set
         double trainingSetPercent = 0.8;
@@ -71,15 +74,18 @@ public class App
             double lossNoReg = netNoReg.learnBatch(dsTrain, alpha, lambda, n);
             double lossL1Reg = netL1Reg.learnBatch(dsTrain, alpha, lambda, n);
             double lossL2Reg = netL2Reg.learnBatch(dsTrain, alpha, lambda, n);
+            double lossL12Reg = netL12Reg.learnBatch(dsTrain, alpha, lambda, n);
             if (i % 10 == 0) {
                 // System.out.printf("%s|%s|%s|%s\n", i, lossNoReg, lossL1Reg, lossL2Reg);
                 System.out.printf("Epoch %s, errors: \t", i);
-                System.out.printf("No regularization: %s/%s (loss %s)\t",
+                System.out.printf("No: %s/%s (loss %s)\t",
                                   netNoReg.test(dsTest), dsTest.asList().size(), lossNoReg);
-                System.out.printf("L1 regularization: %s/%s (loss %s)\t",
+                System.out.printf("L1: %s/%s (loss %s)\t",
                                   netL1Reg.test(dsTest), dsTest.asList().size(), lossL1Reg);
-                System.out.printf("L2 regularization: %s/%s (loss %s)\n",
+                System.out.printf("L2: %s/%s (loss %s)\t",
                                   netL2Reg.test(dsTest), dsTest.asList().size(), lossL2Reg);
+                System.out.printf("L12: %s/%s (loss %s)\n",
+                                  netL12Reg.test(dsTest), dsTest.asList().size(), lossL12Reg);
             }
         }
     }

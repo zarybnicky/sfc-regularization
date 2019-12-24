@@ -25,6 +25,7 @@ public class Network implements Cloneable
     {
         this(activation, sizes, l1, l2);
     }
+
     public Network(ActivationFunction activation, int[] sizes, boolean l1, boolean l2)
     {
         this.l1 = l1;
@@ -100,15 +101,15 @@ public class Network implements Cloneable
         for (int i = 0; i < biases.size(); i++) {
             // Regularization
             if (l2) {
-                weights.get(i).muli(1 - alpha * lambda / n);
+                nablaW[i].addi(weights.get(i).mul(lambda));
             }
             if (l1) {
-                weights.get(i).addi(sign(weights.get(i)).muli(alpha * lambda / n));
+                nablaW[i].addi(sign(weights.get(i)).mul(lambda));
             }
 
             // Weight update
-            biases.get(i).subi(nablaB[i].mul(alpha / ds.getFeatures().length()));
-            weights.get(i).subi(nablaW[i].mul(alpha / ds.getFeatures().length()));
+            biases.get(i).subi(nablaB[i].mul(alpha / n));
+            weights.get(i).subi(nablaW[i].mul(alpha / n));
         }
         return loss;
     }
